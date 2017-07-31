@@ -1,0 +1,24 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Superunknown1103/Bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Superunknown1103/Bamazon/issues"
+  },
+  "homepage": "https://github.com/Superunknown1103/Bamazon#readme",
+  "dependencies": {
+    "http": "0.0.0",
+    "inquirer": "^3.2.1",
+    "mysql": "^2.14.0"
+  }
+}
