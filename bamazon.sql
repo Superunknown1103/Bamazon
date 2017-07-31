@@ -5,8 +5,8 @@ USE bamazon_db;
 
 create table products (
 	item_id int not null auto_increment,
-    product_name varchar(100) NULL, 
-    department_name varchar(100) NULL,
+    product_name varchar(30) NULL, 
+    department_name varchar(30) NULL,
     price decimal(10,2) NULL, 
     stock_qty int NULL, 
 	primary key (item_id)

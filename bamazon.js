@@ -1,6 +1,7 @@
-
+var colors = require('colors');
 var mysql = require('mysql');
-var http = require('http');
+var inquirer = require('inquirer');
+var Table = require('cli-table');
 var connection = mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
@@ -11,26 +12,26 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
 	if (err) throw (err);
-	console.log("The product database is working.");
+	console.log("Welcome to the Bamazon Marketplace.".bgCyan);
 	start();
 });
 
 var start = function() {
 	connection.query('SELECT * FROM Products', function(err, res) {
 		console.log('------------------------------');
-		console.log('Available Bamazon Products');
+		console.log('Available Bamazon Products'.bgYellow);
 		console.log('------------------------------');
 		var table = new Table({
-			head: ['item_id', 'product_name', 'department_name', 'price', 'stock_qty']
-			colWidths: [10, 40, 10, 10, 20, 20]
+			head: ['item_id'.white, 'product_name'.white, 'department_name'.white, 'price'.white, 'stock_qty'.white],
+			colWidths: [5, 20, 15, 15, 5, 5]
 		});
-		for (var i=0; i < res.lengthl i++) {
+		for (var i=0; i < res.length; i++) {
 			var productArray = [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_qty];
 			table.push(productArray);
 		}
 		console.log(table.toString());
 		buyItem();
-	})
+	});
 }
 
 /*
