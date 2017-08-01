@@ -12,6 +12,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err){
 	if (err) throw (err);
+	console.log("\n");
 	console.log("Welcome to the Bamazon Marketplace.".bgCyan);
 	start();
 });
@@ -33,6 +34,47 @@ var start = function() {
 		buyItem();
 	});
 }
+
+var buyItem = function() {
+	inquirer.prompt([{
+		name: "Item",
+		type: 'input',
+		message: "Please enter the ID of the product you would like to purchase.",
+		validate: function(value) {
+			// validates answer
+			if (isNaN(value) === false) {
+				return true;
+				} else {
+					console.log("\nPlease check that only the ID number has been entered and entered correctly.\n");
+					return false;
+				}
+			}
+		}])
+				},
+
+var Qty = function() {
+	inquirer.prompt([{
+		name: 'Qty',
+		type: 'input',
+		message: "Please enter the quantity of the product you would like to purchase.",
+		validate: function(value) {
+			if (isNaN(value) === false) {
+				return true;
+				} else {
+					console.log("\nPlease check that only the ID number has been entered and entered correctly.\n");
+					return false;
+				}
+			}
+		}]).then(function(answer) {
+			var ItemInt = parseInt(answer.Qty);
+			//Queries the database
+			connection.query("SELECT * FROM PRODUCTS WHERE ?", [{ItemID: answer.Item}], function(err, data) {
+				if (err) throw err;
+			}
+		})
+
+
+
 
 /*
 function createProduct() {
