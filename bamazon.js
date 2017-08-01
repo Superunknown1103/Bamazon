@@ -50,10 +50,7 @@ var buyItem = function() {
 				}
 			}
 		}])
-				},
-
-var Qty = function() {
-	inquirer.prompt([{
+				}, {
 		name: 'Qty',
 		type: 'input',
 		message: "Please enter the quantity of the product you would like to purchase.",
@@ -68,8 +65,21 @@ var Qty = function() {
 		}]).then(function(answer) {
 			var ItemInt = parseInt(answer.Qty);
 			//Queries the database
-			connection.query("SELECT * FROM PRODUCTS WHERE ?", [{ItemID: answer.Item}], function(err, data) {
+			connection.query("SELECT * FROM PRODUCTS WHERE ?", [{item_ID: answer.Item}], function(err, data) {
 				if (err) throw err;
+			// Checks if sufficient quantity exists 
+			if (data[0].stock_qty - ItemInt;
+			var totalPrice = data[0].Price * ItemInt;
+			connection.query('UPDATE products SET stock_qty = ? WHERE item_ID = ?', [updateQty, answer.Item], function(err, results) {
+			if (err) {
+				throw err;
+			} else {
+				console.log("Purchase successful!\n");
+				console.log("Your total cost is: $ " + totalPrice);
+				)
+			}
+			}
+			}
 			}
 		})
 
