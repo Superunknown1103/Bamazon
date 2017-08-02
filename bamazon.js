@@ -23,8 +23,8 @@ var start = function() {
 		console.log('Available Bamazon Products'.bgYellow);
 		console.log('------------------------------');
 		var table = new Table({
-			head: ['item_id'.white, 'product_name'.white, 'department_name'.white, 'price'.white, 'stock_qty'.white],
-			colWidths: [5, 20, 15, 15, 5, 5]
+			head: ['ID'.white, 'product_name'.white, 'department_name'.white, 'price'.white, 'qty'.white],
+			colWidths: [5, 20, 20, 10, 5]
 		});
 		for (var i=0; i < res.length; i++) {
 			var productArray = [res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_qty];
