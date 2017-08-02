@@ -44,19 +44,20 @@ var buyItem = function() {
 			// validates answer
 			if (isNaN(value) === false) {
 				return true;
+				console.log("OK.")
 				} else {
 					console.log("\nPlease check that only the ID number has been entered and entered correctly.\n");
 					return false;
 				}
 			}
-		}])
 				}, {
 		name: 'Qty',
 		type: 'input',
-		message: "Please enter the quantity of the product you would like to purchase.",
+		message: '\nPlease enter the quantity of the product you would like to purchase.\n',
 		validate: function(value) {
 			if (isNaN(value) === false) {
 				return true;
+				console.log("OK.")
 				} else {
 					console.log("\nPlease check that only the ID number has been entered and entered correctly.\n");
 					return false;
@@ -68,20 +69,41 @@ var buyItem = function() {
 			connection.query("SELECT * FROM PRODUCTS WHERE ?", [{item_ID: answer.Item}], function(err, data) {
 				if (err) throw err;
 			// Checks if sufficient quantity exists 
-			if (data[0].stock_qty - ItemInt;
-			var totalPrice = data[0].Price * ItemInt;
+			if (data[0].stock_qty < ItemInt) {
+				console.log("We're sorry, that Item is currently out of stock\n");
+				console.log("Please choose another Product\n");
+				start();
+			} else {
+
+			var updateQty = data[0].stock_qty - ItemInt;
+			var totalPrice = data[0].price * ItemInt;
 			connection.query('UPDATE products SET stock_qty = ? WHERE item_ID = ?', [updateQty, answer.Item], function(err, results) {
 			if (err) {
 				throw err;
 			} else {
 				console.log("Purchase successful!\n");
 				console.log("Your total cost is: $ " + totalPrice);
-				)
+
+			inquirer.prompt({
+				name: "contiueShop",
+				type: "confirm",
+				message: "Would you like to continue shopping?",
+			}).then(function(answer) {
+				if (answer.continueShop === true) {
+					start();
+				} else {
+					console.log("OK. Thanks, come again soon!");
+					connection.end();
+				}
+			});
 			}
+			});
 			}
-			}
-			}
-		})
+			});
+		});
+		};
+
+
 
 
 
