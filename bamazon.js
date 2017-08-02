@@ -85,11 +85,12 @@ var buyItem = function() {
 				console.log("Your total cost is: $ " + totalPrice);
 
 			inquirer.prompt({
-				name: "contiueShop",
+				name: "continueShop",
 				type: "confirm",
 				message: "Would you like to continue shopping?",
 			}).then(function(answer) {
 				if (answer.continueShop === true) {
+					console.log("Ok, let's continue.");
 					start();
 				} else {
 					console.log("OK. Thanks, come again soon!");
@@ -106,7 +107,7 @@ var buyItem = function() {
 
 
 
-
+// add product 
 
 /*
 function createProduct() {
